@@ -1,0 +1,47 @@
+name: CI
+
+on: [push]
+
+jobs:
+    main:
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+            fail-fast: true
+            matrix:
+                os: [ubuntu-latest, ubuntu-18.04]
+
+        steps:
+          - name: Checkout this repo
+            uses: actions/checkout@v1
+
+          - name: Install nodejs
+            uses: actions/setup-node@v1.3.0
+            with:
+                node-version: 13.6.0
+
+          - name: Lint
+            run: echo "FIXME(add linting)"
+
+          - name: Build
+            run: echo "FIXME(add building)"
+
+          - name: Test
+            run: echo "FIXME(add testing)"
+
+    deploy:
+        runs-on: ubuntu-18.04
+        needs: main
+        steps:
+          - name: Deploy
+            run: echo "FIXME(add deployment)"
+
+    build-notify:
+        runs-on: ubuntu-18.04
+        steps:
+          - uses: yanzay/notify-telegram@v0.1.0
+            if: always()
+            with:
+                chat: ${{ secrets.TELEGRAM_CHAT_ID }}
+                token: ${{ secrets.TELEGRAM_TOKEN }}
+                status: ${{ job.status }}

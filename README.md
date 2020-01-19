@@ -1,9 +1,9 @@
 # audio-guesser website
 
+![](https://github.com/100-debug-hours/audio-guesser/workflows/CI/badge.svg)
 
 ## Rationale
 This project was created as a test task for [int20h hackathon 2020](https://int20h.best-kyiv.org/).
-
 
 The website ebables users to search music by recording a sample audio-track that
 resembles the original sound or by looking it up via an excerpt of lyrics, music title
