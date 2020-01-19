@@ -4,13 +4,7 @@ on: [push]
 
 jobs:
     main:
-        runs-on: ${{ matrix.os }}
-
-        strategy:
-            fail-fast: true
-            matrix:
-                os: [ubuntu-latest, ubuntu-18.04]
-
+        runs-on: ubuntu-18.04
         steps:
           - name: Checkout this repo
             uses: actions/checkout@v1
@@ -24,10 +18,21 @@ jobs:
             run: echo "FIXME(add linting)"
 
           - name: Build
-            run: echo "FIXME(add building)"
+            run: |
+                echo Testing job failure notification
+                exit 1
 
           - name: Test
             run: echo "FIXME(add testing)"
+
+          - name: Send notification
+            uses: yanzay/notify-telegram@v0.1.0
+            if: always()
+            with:
+                chat: ${{ secrets.TELEGRAM_CHAT_ID }}
+                token: ${{ secrets.TELEGRAM_TOKEN }}
+                status: ${{ job.status }}
+
 
     deploy:
         runs-on: ubuntu-18.04
@@ -35,13 +40,3 @@ jobs:
         steps:
           - name: Deploy
             run: echo "FIXME(add deployment)"
-
-    build-notify:
-        runs-on: ubuntu-18.04
-        steps:
-          - uses: yanzay/notify-telegram@v0.1.0
-            if: always()
-            with:
-                chat: ${{ secrets.TELEGRAM_CHAT_ID }}
-                token: ${{ secrets.TELEGRAM_TOKEN }}
-                status: ${{ job.status }}
