@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-    main:
+    frontend:
         runs-on: ubuntu-18.04
         steps:
           - name: Checkout this repo
@@ -30,10 +30,39 @@ jobs:
                 chat: ${{ secrets.TELEGRAM_CHAT_ID }}
                 token: ${{ secrets.TELEGRAM_TOKEN }}
                 status: ${{ job.status }}
+    backend:
+        runs-on: ubuntu-18.04
+        steps:
+          - name: Checkout this repo
+            uses: actions/checkout@v1
+
+          - name: Build
+            uses: actions-rs/cargo@v1
+            with:
+                command: build
+                args: --manifest-path backend/Cargo.toml
+
+          - name: Test
+            uses: actions-rs/cargo@v1
+            with:
+                command: test
+                args: --manifest-path backend/Cargo.toml
+
+          - name: Dist backend
+            run: (cd backend && cargo xtask dist)
+
+          - name: Send notification # FIXME: find a way to extract this into a job (deduplicate notifications)
+            uses: yanzay/notify-telegram@v0.1.0
+            if: always()
+            with:
+                chat: ${{ secrets.TELEGRAM_CHAT_ID }}
+                token: ${{ secrets.TELEGRAM_TOKEN }}
+                status: ${{ job.status }}
+
 
     deploy:
         runs-on: ubuntu-18.04
-        needs: main
+        needs: [frontend, backend]
         if: github.ref == 'master'
         steps:
           - name: Deploy

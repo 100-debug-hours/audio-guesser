@@ -9,7 +9,7 @@ async fn main() {
 
     if cfg!(debug_assertions) {
         if let Err(err) = dotenv() {
-            eprintln!("Failed to load \".env\" file: {}", err);
+            log::error!("Failed to load \".env\" file: {}", err);
             process::exit(exitcode::CONFIG);
         }
     }
@@ -29,5 +29,5 @@ async fn main() {
     if let Err(err) = server.run().await {
         log::error!("Unrecoverable IO error occured: {}", err);
         process::exit(exitcode::IOERR);
-    };
+    }
 }

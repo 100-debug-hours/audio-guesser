@@ -48,17 +48,17 @@ fn dist_binary() -> Result<()> {
 }
 
 fn strip_binary(dst: &Path) -> Result<()> {
-    if Command::new("strip").arg("--version").stdout(Stdio::null()).status().is_ok() {
-
-        println!("stripping the binary");
-
-        if !Command::new("strip").arg(&dst).status()?.success() {
-            bail!("strip failed");
-        }
-
-    } else {
+    if Command::new("strip").arg("--version").stdout(Stdio::null()).status().is_err() {
         eprintln!("no `strip` utility found");
+        return Ok(());
     }
+
+    println!("stripping the binary");
+
+    if !Command::new("strip").arg(&dst).status()?.success() {
+        bail!("strip failed");
+    }
+
     Ok(())
 }
 
