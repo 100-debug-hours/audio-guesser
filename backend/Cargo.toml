@@ -1,0 +1,22 @@
+[package]
+name = "backend"
+version = "0.1.0"
+authors = ["100-debug-hours <gersoh3@gmail.com>"]
+edition = "2018"
+
+description = "Backend web-server for audio-guesser web application"
+repository = "https://github.com/100-debug-hours/audio-guesser.git"
+licence = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dotenv = "0.15.0"
+actix-files = "0.2.1"
+actix-web = "2.0.0"
+actix-rt = "1.0.0"
+env_logger = "0.7.1"
+exitcode = "1.1.2"
+serde = "1.0.104"
+log = "0.4.8"
+envy = "0.4.1"
