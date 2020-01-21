@@ -8,7 +8,7 @@ async fn main() {
     env_logger::from_env(Env::default().default_filter_or("debug")).init();
 
     if cfg!(debug_assertions) {
-        if let Some(err) = dotenv().err() {
+        if let Err(err) = dotenv() {
             eprintln!("Failed to load \".env\" file: {}", err);
             process::exit(exitcode::CONFIG);
         }
