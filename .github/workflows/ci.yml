@@ -11,11 +11,12 @@ jobs:
 
           - name: Install nodejs
             uses: actions/setup-node@v1.3.0
+            working-directory: frontend
             with:
                 node-version: 13.6.0
 
           - name: Lint
-            run: cd frontend && npm ci && npm run-script lint
+            run: npm ci && npm run-script lint
 
           - name: Build
             run: npm run-script build
