@@ -65,7 +65,6 @@ jobs:
         needs: [frontend, backend]
         if: github.ref == 'master'
         steps:
-          - uses: actions/checkout@master
           - name: deploy to Heroku
           env:
               HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
