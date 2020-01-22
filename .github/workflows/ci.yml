@@ -15,13 +15,13 @@ jobs:
                 node-version: 13.6.0
 
           - name: Lint
-            run: echo "FIXME(add linting)"
+            run: npm ci && npm run-script lint
 
           - name: Build
-            run: echo "FIXME(add building)"
+            run: npm run-script build
 
           - name: Test
-            run: echo "FIXME(add testing)"
+            run: npm run-script test
 
           - name: Send notification
             uses: yanzay/notify-telegram@v0.1.0
@@ -65,5 +65,9 @@ jobs:
         needs: [frontend, backend]
         if: github.ref == 'master'
         steps:
-          - name: Deploy
-            run: echo "FIXME(add deployment)"
+          - uses: actions/checkout@master
+          - name: deploy to Heroku
+          env:
+              HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+              HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+          run: git push https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git origin/master:master
