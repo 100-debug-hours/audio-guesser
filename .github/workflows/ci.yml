@@ -11,18 +11,17 @@ jobs:
 
           - name: Install nodejs
             uses: actions/setup-node@v1.3.0
-            working-directory: frontend
             with:
                 node-version: 13.6.0
 
           - name: Lint
-            run: npm ci && npm run-script lint
+            run: npm ci && cd frontend && npm run-script lint
 
           - name: Build
-            run: npm run-script build
+            run: cd frontend && npm run-script build
 
           - name: Test
-            run: npm run-script test
+            run: cd frontend && npm run-script test
 
           - name: Send notification
             uses: yanzay/notify-telegram@v0.1.0
