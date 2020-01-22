@@ -15,7 +15,7 @@ jobs:
                 node-version: 13.6.0
 
           - name: Lint
-            run:  cd frontend npm && ci && npm run-script lint
+            run: cd frontend && npm ci && npm run-script lint
 
           - name: Build
             run: cd frontend && npm run-script build
