@@ -58,13 +58,14 @@ jobs:
                 chat: ${{ secrets.TELEGRAM_CHAT_ID }}
                 token: ${{ secrets.TELEGRAM_TOKEN }}
                 status: ${{ job.status }}
-
-
     deploy:
         runs-on: ubuntu-18.04
         needs: [frontend, backend]
         if: github.ref == 'master'
         steps:
+          - name: Checkout this repo
+            uses: actions/checkout@v1
+
           - name: deploy to Heroku
             env:
                 HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
