@@ -48,9 +48,6 @@ jobs:
                 command: test
                 args: --manifest-path backend/Cargo.toml
 
-          - name: Dist backend
-            run: (cd backend && cargo xtask dist)
-
           - name: Send notification # FIXME: find a way to extract this into a job (deduplicate notifications)
             uses: yanzay/notify-telegram@v0.1.0
             if: always()
