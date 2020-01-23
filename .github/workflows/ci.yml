@@ -21,7 +21,7 @@ jobs:
             run: cd frontend && npm run-script build
 
           - name: Test
-            run: cd frontend && npm run-script test
+            run: cd frontend && npm run-script test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
           - name: Send notification
             uses: yanzay/notify-telegram@v0.1.0
