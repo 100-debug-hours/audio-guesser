@@ -1,5 +1,5 @@
 # frontend
-FROM node:12.14.1 AS frontend
+FROM node:13.6.0 AS frontend
 WORKDIR /usr/src/frontend
 COPY frontend .
 RUN npm i && npm run-script build
