@@ -20,7 +20,7 @@ async fn main() {
     });
 
     let server = HttpServer::new(|| App::new().configure(backend::configure_actix_app))
-        .bind(format!("127.0.0.1:{}", config.port))
+        .bind(format!("0.0.0.0:{}", config.port))
         .unwrap_or_else(|err| {
             log::error!("Failed to bind to port {}: {}", config.port, err);
             process::exit(exitcode::IOERR)
