@@ -4,6 +4,10 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    margin: 0;
+}
+
 header {
     padding: 20px 0px;
     margin: 0;
@@ -79,7 +83,7 @@ input::placeholder {
     border-color: var(--white-color);
     position: relative;
     padding: 0.75rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     border: 1px solid transparent;
     border-radius: 0.25rem;
       
@@ -98,13 +102,13 @@ input::placeholder {
 
 .center_pos {
     text-align: center;
+    margin: 5px 0;
 }
 
 .btn_form {
     display: flex; 
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 1vw;
 }
 
 .last_block {
@@ -113,6 +117,8 @@ input::placeholder {
     justify-content: center;
     border: 2px solid var(--light-gray-color);
     border-radius: 0.25rem;
+    padding: 1rem 0;
+    
 }
 
 .made_by {
