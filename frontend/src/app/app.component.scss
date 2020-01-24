@@ -1,0 +1,126 @@
+h1 {
+    font-size: 48px;
+    line-height: 1.21;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+}
+
+header {
+    padding: 20px 0px;
+    margin: 0;
+}
+
+footer {
+    font-size: 0.7rem;
+}
+
+button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    color: var(--white-color);
+    background-color: var(--dark-gray-color);
+    border: 1px solid var(--dark-gray-color);
+    border-radius: 0.25rem;
+    width: 3vw;
+    min-width: 100px;
+}
+
+button:hover {
+    color: var(--light-gray-color);
+}
+
+form {
+    width : 100%;
+}
+
+article {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.body {
+    --white-color: white;
+    --dark-gray-color : #2c2c35;
+    --light-gray-color : #d2d2d2;
+    margin: 0px 5vw;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+input::placeholder {
+    color: var(--dark-gray-color);
+    text-align: center;
+}
+
+.gray-line {
+    display: block;
+    padding: 0;
+
+    color: var(--gray-color);
+    border: solid 1px var(--light-gray-color);
+    margin: 6px 1vw;
+}
+
+.icon {
+    width: 10vw;
+    min-width: 100px;
+    height: 10vw;
+    min-height: 100px;
+}
+
+.block {
+    color: var(--dark-gray-color);
+    background-color: var(--light-gray-color);
+    border-color: var(--white-color);
+    position: relative;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+      
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.text_input {
+    margin: 1vw;
+    width: calc(100% - 2vw);
+    color: var(--dark-gray-color);
+    border: 2px solid var(--light-gray-color);
+    border-radius: 12px;
+}
+
+.center_pos {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.btn_form {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.last_block {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid var(--light-gray-color);
+    border-radius: 0.25rem;
+    padding: 1rem 0;
+    
+}
+
+.made_by {
+    color: var(--light-gray-color);
+}
