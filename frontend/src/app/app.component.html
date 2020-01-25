@@ -7,11 +7,11 @@
   </header>
   <article>
     <div class="block">
-      <img class="icon" src="../assets/text_icon.png" alt="text icon">
+      <img class="icon" src="/assets/text_icon.png" alt="text icon">
       <textarea [(ngModel)]="searchQuery" class="text_input" type="text" placeholder="Enter the text"></textarea>
     </div>
     <div class="block">
-      <img class="icon" src="../assets/note_icon.png" alt="note icon">
+      <img class="icon" src="/assets/note_icon.png" alt="note icon">
       <div class='audio-recorder-container'>
         <button class="start-button" *ngIf="!isRecording && !blobSafeUrl" (click)="startRecording()">Start Recording</button>
         <button class="stop-button" *ngIf="isRecording && !blobSafeUrl" (click)="stopRecording()">Stop Recording</button>
@@ -31,9 +31,13 @@
     <div class="last_block">
       <h2 class="center_pos">That's it?</h2>
       <div class="center_pos">
-        <audio *ngIf="foundSongBlob" controls>
-          <source [src]="foundSongBlob" type="audio/webm">
-        </audio>
+        <ng-container *ngIf="foundSong">
+            <div>Song: {{foundSong.artist}} - {{foundSong.title}}</div>
+            <!-- <div>Link: {{foundSong.url}}</div> -->
+            <audio *ngIf="foundSongSafeUrl" controls>
+                <source [src]="foundSongSafeUrl">
+            </audio>
+        </ng-container>
       </div>
     </div>
   </article>
