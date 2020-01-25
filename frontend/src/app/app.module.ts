@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AudioRecordingService } from './audio-recording.service';
+import { RecordingDataTransferService } from './recording-data-transfer.service';
 
 @NgModule({
   declarations: [
@@ -14,10 +15,11 @@ import { AudioRecordingService } from './audio-recording.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
-    AudioRecordingService
+    AudioRecordingService,
+    RecordingDataTransferService
   ],
   bootstrap: [AppComponent]
 })

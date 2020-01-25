@@ -4,15 +4,13 @@ import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
-interface RecordedAudioOutput {
+export interface RecordedAudioOutput {
   blob: Blob;
   title: string;
 }
 
 @Injectable()
 export class AudioRecordingService {
-
-
   private stream;
   private recorder;
   private interval;
@@ -94,7 +92,7 @@ export class AudioRecordingService {
         if (this.startTime) {
           const mp3Name = encodeURIComponent('audio_' + new Date().getTime() + '.mp3');
           this.stopMedia();
-          this._recorded.next({ blob: blob, title: mp3Name });
+          this._recorded.next({ blob, title: mp3Name });
         }
       }, () => {
         this.stopMedia();

@@ -1,7 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AudioRecordingService } from './audio-recording.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { RecordingDataTransferService } from './recording-data-transfer.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +13,21 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class AppComponent implements OnDestroy {
 
+  searchQuery = '';
   isRecording = false;
-  recordedTime;
-  blobUrl;
+  recordedTime: string;
+  blobUrl: SafeUrl;
+  isLoadingData = false;
+  attemptsCounter;
+  foundSongBlob = '';
+
+  private readonly apiUrl = '/example';
 
   constructor(
     private audioRecordingService: AudioRecordingService,
     private http: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private recordingDataTransferService: RecordingDataTransferService
     ) {
 
     this.audioRecordingService.recordingFailed().subscribe(() => {
@@ -64,11 +73,21 @@ export class AppComponent implements OnDestroy {
   }
 
   submitText(): void {
-    
+    this.recordingDataTransferService.getSimilarRecordings(this.searchQuery, false).pipe(
+      tap(() => this.isLoadingData = true)
+    ).subscribe((data) => {
+      this.foundSongBlob = (data as any).blob;
+      this.isLoadingData = false;
+    });
   }
 
   submitSound(): void {
-
+    this.recordingDataTransferService.getSimilarRecordings(this.blobUrl.toString(), true).pipe(
+      tap(() => this.isLoadingData = true)
+    ).subscribe((data) => {
+      this.foundSongBlob = (data as any).blob;
+      this.isLoadingData = false;
+    });
   }
 
 }
