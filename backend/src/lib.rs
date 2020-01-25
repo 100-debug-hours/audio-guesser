@@ -1,12 +1,16 @@
 mod config;
+mod api;
 
 use actix_files::Files;
-use actix_web::web;
+use actix_web::{web, client::Client};
 
 pub use config::*;
 
 pub fn configure_actix_app(cfg: &mut web::ServiceConfig) {
     cfg
+        .data(Client::default())
+        .data(web::JsonConfig::default().limit(4096))
+        .service(web::resource("/api/recognize_musics").route(web::post().to(api::recognize_musics)))
         .service(Files::new("/assets", "assets"))
         .service(Files::new("/", "dist").index_file("index.html"));
 }
