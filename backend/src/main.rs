@@ -14,10 +14,7 @@ async fn main() {
         }
     }
 
-    let config: backend::Config = envy::from_env().unwrap_or_else(|err| {
-        log::error!("Failed to read valid configuration from environment variables: {}", err);
-        process::exit(exitcode::CONFIG);
-    });
+    let config = backend::get_config();
 
     let server = HttpServer::new(|| App::new().configure(backend::configure_actix_app))
         .bind(format!("0.0.0.0:{}", config.port))
