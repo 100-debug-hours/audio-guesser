@@ -13,13 +13,13 @@
     <div class="block">
       <img class="icon" src="../assets/note_icon.png" alt="note icon">
       <div class='audio-recorder-container'>
-        <button class="start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()">Start Recording</button>
-        <button class="stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">Stop Recording</button>
-        <button class="cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">Clear Recording</button>
-        <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+        <button class="start-button" *ngIf="!isRecording && !blobSafeUrl" (click)="startRecording()">Start Recording</button>
+        <button class="stop-button" *ngIf="isRecording && !blobSafeUrl" (click)="stopRecording()">Stop Recording</button>
+        <button class="cancel-button" *ngIf="!isRecording && blobSafeUrl" (click)="clearRecordedData()">Clear Recording</button>
+        <div *ngIf="isRecording && !blobSafeUrl"> {{recordedTime}} </div>
         <div>
-        <audio *ngIf="!isRecording && blobUrl"  controls>
-          <source [src]="blobUrl" type="audio/webm">
+        <audio *ngIf="!isRecording && blobSafeUrl"  controls>
+          <source [src]="blobSafeUrl" type="audio/webm">
         </audio>
         </div>
       </div>
