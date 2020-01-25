@@ -8,11 +8,25 @@
   <article>
     <div class="block">
       <img class="icon" src="../assets/text_icon.png" alt="text icon">
-      <input class="text_input" type="text" placeholder="Enter the text">
+      <textarea [(ngModel)]="title" class="text_input" type="text" placeholder="Enter the text"></textarea>
     </div>
     <div class="block">
       <img class="icon" src="../assets/note_icon.png" alt="note icon">
-      <input class="text_input" type="text" placeholder="place for recording sound"><!--place for recording sound-->
+      <div class='audio-recorder-container'>
+        <button class="start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()">Start Recording</button>
+        <button class="stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">Stop Recording</button>
+        <button class="cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">Clear Recording</button>
+        <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+        <div>
+        <audio *ngIf="!isRecording && blobUrl"  controls>
+          <source [src]="blobUrl" type="audio/webm">
+        </audio>
+        </div>
+      </div>
+    </div>
+    <div class='submit-buttons'>
+      <button (click)="submitText()">Submit text</button>
+      <button (click)="submitSound()">Submit sound</button>
     </div>
     <div class="last_block">
       <h2 class="center_pos">That's it?</h2>

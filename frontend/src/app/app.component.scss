@@ -77,6 +77,12 @@ input::placeholder {
     min-height: 100px;
 }
 
+.submit-buttons {
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .block {
     color: var(--dark-gray-color);
     background-color: var(--light-gray-color);
@@ -123,4 +129,49 @@ input::placeholder {
 
 .made_by {
     color: var(--light-gray-color);
+}
+
+.start-button {
+    background-color: #7ffe9f; /* Green */
+    border: none;
+    color: white;
+    width: 150px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.stop-button {
+    background-color: rgba(118, 146, 254, 0.69); /* Green */
+    border: none;
+    color: white;
+    width: 150px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.cancel-button {
+    background-color: #af7541; /* Green */
+    border: none;
+    color: white;
+    width: 150px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.audio-recorder-container {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
