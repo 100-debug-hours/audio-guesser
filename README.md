@@ -13,9 +13,6 @@ or author's name.
 
 [Website link](https://audio-guesser.herokuapp.com/).
 
-// FIXME: add screenshots
-
-
 ## Documentation
 
 * [`docs/task.pdf`](docs/task.pdf) - initial task (it is written
@@ -30,14 +27,19 @@ in Ukrainian)
 * [Docker](https://docs.docker.com/get-started)
 * [Docker Compose](https://docs.docker.com/compose)
 * [NodeJS and npm](https://nodejs.org/en/)
+* [Rust toolchain](https://www.rust-lang.org/tools/install)
 
 ## Bootstrap
 
-// FIXME: amend this script once bootstrap process is stable
+Create the following environmental varialbes in `backend/.env` file:
+```
+PORT=8080
+AUDD_IO_TOKEN="blah_blah_blah"
+```
+Then run the following script
 
 ```bash
-git clone https://github.com/100-debug-hours/audio-guesser.git
-cd audio-guesser
-npm run bootstrap
-npm run start
+./bootstrap.sh
 ```
+
+Open your browser at [`http://localhost:8080`](http://localhost:8080)

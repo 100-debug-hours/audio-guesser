@@ -18,7 +18,8 @@ export class AppComponent implements OnDestroy {
   blobSafeUrl: SafeUrl;
   isLoadingData = false;
   attemptsCounter;
-  foundSongBlob = '';
+  foundSongSafeUrl: null | SafeUrl;
+  foundSong: Recording;
 
   constructor(
       private audioRecordingService: AudioRecordingService,
@@ -83,7 +84,8 @@ export class AppComponent implements OnDestroy {
   }
 
   setSongResult = (data: Recording) => {
-    this.foundSongBlob = (data as any).blob;
+    this.foundSong = data;
+    this.foundSongSafeUrl = this.sanitizer.bypassSecurityTrustUrl(data.url);
     this.isLoadingData = false;
   }
 
